@@ -4,15 +4,24 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  const config = new DocumentBuilder()
-    .setTitle('San pham minh phu')
-    .setDescription('The SPMP API description')
-    .setVersion('1.0')
-    .addTag('SPMP')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  if (
+    process.env.SERVER_ENV !== 'production' &&
+    process.env.SERVER_ENV !== 'staging'
+  ) {
+    const docBuilder = new DocumentBuilder()
+      .setTitle('San pham minh phu')
+      .setDescription('The SPMP API description')
+      .addBearerAuth()
+      .setVersion(`${process.env.RENDER_GIT_COMMIT ?? 'Unknown build'}`);
+    docBuilder.addServer(`http://localhost:3001`, 'Localhost');
+    docBuilder.addServer(
+      'https://spmp-backend.vercel.app/',
+      'Development Instance 1',
+    );
+    const swaggerConfig = docBuilder.build();
+    const document = SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup('docs', app, document);
+  }
 
   await app.listen(3001);
 }
