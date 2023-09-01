@@ -6,7 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "prisma migrate && nest build",
+    "build": "prisma migrate && nest build && echo \"Completed build aaaaaaaaaaaa\"",
+    "render-build": "npm ci && npx prisma generate && npx prisma migrate deploy && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
