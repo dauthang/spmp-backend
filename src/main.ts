@@ -5,7 +5,15 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+  app.enableCors({
+    origin: [
+      'http://localhost:3000',
+      'https://spmp-admin.vercel.app',
+      'https://spmp-fontend.vercel.app',
+    ],
+    methods: ['GET', 'POST'],
+    credentials: true,
+  });
   app.setGlobalPrefix('api/v1');
   if (
     process.env.SERVER_ENV !== 'production' &&
