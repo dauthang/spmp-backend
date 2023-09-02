@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import Joi from '@hapi/joi';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SharedModule } from './shared/shared.module';
+import { ProductModule } from './product/product.module';
 import typeorm from './config/typeorm';
 
 @Module({
@@ -28,6 +29,7 @@ import typeorm from './config/typeorm';
       synchronize: true,
     }),
     SharedModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

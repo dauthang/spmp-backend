@@ -12,7 +12,7 @@ export class UserController {
     return this.userService.user();
   }
 
-  @Post('user')
+  @Post('create')
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
