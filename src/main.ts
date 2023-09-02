@@ -11,7 +11,7 @@ async function bootstrap() {
       'https://spmp-admin.vercel.app',
       'https://spmp-fontend.vercel.app',
     ],
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
     credentials: true,
   });
   app.setGlobalPrefix('api/v1');
