@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AbstractEntity, User } from './entity';
+import { AbstractEntity, Product, User } from './entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, AbstractEntity])],
+  imports: [TypeOrmModule.forFeature([User, AbstractEntity, Product])],
 })
 export class SharedModule {}
